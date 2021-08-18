@@ -5,20 +5,25 @@ import 'package:flutter/material.dart';
 import 'package:restaurant_app/data/api/api_service.dart';
 import 'package:restaurant_app/provider/restaurant_provider.dart';
 import 'package:restaurant_app/widget/list.dart';
+import 'package:restaurant_app/common/enum.dart';
+
 
 class ListPage extends StatefulWidget {
   static const routeName = '/list_page';
+  final int bottomNavBarIndex;
+   const ListPage({this.bottomNavBarIndex = 0});
 
   @override
   _ListPageState createState() => _ListPageState();
 }
 
 class _ListPageState extends State<ListPage> {
+  
   late RestaurantProvider provider;
   final TextEditingController _filter = TextEditingController();
   Icon _searchIcon = Icon(Icons.search);
   Widget _appBar = Text(
-    'RestaurantApp #2',
+    'RestaurantApp',
     style: GoogleFonts.poppins(fontSize: 20, fontWeight: FontWeight.w900),
   );
 

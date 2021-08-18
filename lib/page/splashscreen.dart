@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:restaurant_app/page/list_page.dart';
+import 'package:restaurant_app/page/home_page.dart';
 
 class SplashScreen extends StatefulWidget {
   static const routeName = '/splashScreen';
@@ -19,7 +19,7 @@ class _SplashScreen extends State<SplashScreen> {
   splashScreen() {
     var duration = const Duration(seconds: 3);
     return Timer(duration, () {
-      Navigator.pushReplacementNamed(context, ListPage.routeName);
+      Navigator.pushReplacementNamed(context, HomePage.routeName);
     });
   }
 

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:restaurant_app/data/db/db_helper.dart';
 import 'package:restaurant_app/provider/db_provider.dart';
-import 'package:scroll_bottom_navigation_bar/scroll_bottom_navigation_bar.dart';
 import 'setting_page.dart';
 import 'favorite_page.dart';
 import 'list_page.dart';

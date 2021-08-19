@@ -1,6 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:restaurant_app/data/db/db_helper.dart';
-import 'package:restaurant_app/data/model/detail_model.dart';
+import 'package:restaurant_app/data/model/restaurant_model.dart';
 import 'package:restaurant_app/utils/enum.dart';
 
 class DatabaseProvider extends ChangeNotifier {

@@ -6,7 +6,7 @@ class DateTimeHelper {
    final now = DateTime.now();
    final dateFormat = DateFormat('y/M/d');
    // Pengaturan jam rilis notifikasi
-   final timeSpecific = "16:25:00";
+   final timeSpecific = "16:55:00";
    final completeFormat = DateFormat('y/M/d H:m:s');
  
    // Today Format

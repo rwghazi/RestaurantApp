@@ -17,18 +17,22 @@ class SettingPage extends StatelessWidget {
               style: GoogleFonts.poppins(
                   fontSize: 20, fontWeight: FontWeight.w900),
             )),
-        body: Material(
-            child: ListTile(
-                title: Text('Daily reminder'),
-                trailing: Consumer<SchedulingProvider>(
-                    builder: (context, scheduled, _) {
-                  return Switch.adaptive(
-                    value: scheduled.isScheduled,
-                    onChanged: (value) async {
-                      scheduled.scheduledRestaurant(value);
-                      
-                    },
-                  );
-                }))));
+        body: Consumer<PreferencesProvider>(
+          builder: (context, provider, child) {
+            return Material(
+                child: ListTile(
+                    title: Text('Daily reminder'),
+                    trailing: Consumer<SchedulingProvider>(
+                        builder: (context, scheduled, _) {
+                      return Switch.adaptive(
+                        value: provider.isDailyReminderActive,
+                        onChanged: (value) async {
+                          scheduled.scheduledRestaurant(value);
+                          provider.enableDailyReminder(value);
+                        },
+                      );
+                    })));
+          },
+        ));
   }
 }

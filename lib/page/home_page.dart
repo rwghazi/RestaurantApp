@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
+import 'package:restaurant_app/data/db/db_helper.dart';
+import 'package:restaurant_app/provider/db_provider.dart';
+import 'package:scroll_bottom_navigation_bar/scroll_bottom_navigation_bar.dart';
 import 'setting_page.dart';
 import 'favorite_page.dart';
 import 'list_page.dart';
@@ -14,7 +18,9 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   late int bottomNavBarIndex;
+  final controller = ScrollController();
   late PageController pageController;
+    static DatabaseProvider databaseProvider = DatabaseProvider(databaseHelper: DatabaseHelper());
 
   @override
   void initState() {
@@ -67,18 +73,17 @@ class _HomePageState extends State<HomePage> {
                       height: 20,
                       child: Icon(Icons.settings),
                     )),
-              ]),
+              ]
+              ),
         ),
       );
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: Stack(
         children: [
-          Container(
-            color: Colors.amber,
-          ),
           PageView(
             controller: pageController,
             onPageChanged: (index) {
@@ -88,7 +93,7 @@ class _HomePageState extends State<HomePage> {
             },
             children: [
               ListPage(),
-              FavoritePage(),
+              FavoritePage(dbProvider: databaseProvider,),
               SettingPage(),
             ],
           ),
@@ -96,5 +101,5 @@ class _HomePageState extends State<HomePage> {
         ],
       ),
     );
-  }
+  } 
 }

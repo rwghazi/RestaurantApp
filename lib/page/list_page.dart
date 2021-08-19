@@ -5,20 +5,14 @@ import 'package:flutter/material.dart';
 import 'package:restaurant_app/data/api/api_service.dart';
 import 'package:restaurant_app/provider/restaurant_provider.dart';
 import 'package:restaurant_app/widget/list.dart';
-import 'package:restaurant_app/common/enum.dart';
-
+import 'package:restaurant_app/utils/enum.dart';
 
 class ListPage extends StatefulWidget {
-  static const routeName = '/list_page';
-  final int bottomNavBarIndex;
-   const ListPage({this.bottomNavBarIndex = 0});
-
   @override
   _ListPageState createState() => _ListPageState();
 }
 
 class _ListPageState extends State<ListPage> {
-  
   late RestaurantProvider provider;
   final TextEditingController _filter = TextEditingController();
   Icon _searchIcon = Icon(Icons.search);
@@ -44,49 +38,46 @@ class _ListPageState extends State<ListPage> {
   }
 
   Widget _buildItem(BuildContext context) {
-    return ChangeNotifierProvider<RestaurantProvider>(
-      create: (_) => RestaurantProvider(apiService: ApiService(), id: ''),
-      child: Consumer<RestaurantProvider>(
-        builder: (context, state, _) {
-          provider = state;
-          if (state.state == ResultState.Loading) {
-            return Center(
-              child: SpinKitHourGlass(color: Colors.amber),
-            );
-          } else if (state.state == ResultState.HasData) {
-            return ListView.builder(
-              shrinkWrap: true,
-              itemCount: state.result.restaurants.length,
-              itemBuilder: (context, index) {
-                var restaurant = state.result.restaurants[index];
-                return CardRestaurant(restaurant: restaurant);
-              },
-            );
-          } else if (state.state == ResultState.NoData) {
-            return Center(child: Text(state.message));
-          } else if (state.state == ResultState.Error) {
-            return Center(
-                child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Image.asset("assets/no-wifi.png", width: 100),
-                SizedBox(
-                  height: 10,
-                ),
-                Text("Koneksi terputus!"),
-                ElevatedButton(
-                  child: Text("refresh"),
-                  onPressed: () {
-                    provider.getAllRestaurants();
-                  },
-                ),
-              ],
-            ));
-          } else {
-            return Center(child: Text(''));
-          }
-        },
-      ),
+    return Consumer<RestaurantProvider>(
+      builder: (context, state, _) {
+        provider = state;
+        if (state.state == ResultState.Loading) {
+          return Center(
+            child: SpinKitHourGlass(color: Colors.amber),
+          );
+        } else if (state.state == ResultState.HasData) {
+          return ListView.builder(
+            shrinkWrap: true,
+            itemCount: state.result.restaurants.length,
+            itemBuilder: (context, index) {
+              var restaurant = state.result.restaurants[index];
+              return CardRestaurant(restaurant: restaurant);
+            },
+          );
+        } else if (state.state == ResultState.NoData) {
+          return Center(child: Text(state.message));
+        } else if (state.state == ResultState.Error) {
+          return Center(
+              child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Image.asset("assets/no-wifi.png", width: 100),
+              SizedBox(
+                height: 10,
+              ),
+              Text("Koneksi terputus!"),
+              ElevatedButton(
+                child: Text("refresh"),
+                onPressed: () {
+                  provider.getAllRestaurants();
+                },
+              ),
+            ],
+          ));
+        } else {
+          return Center(child: Text(''));
+        }
+      },
     );
   }
 

@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:restaurant_app/data/model/list_model.dart';
+import 'package:restaurant_app/data/model/detail_model.dart';
 
 RestaurantSearch restaurantSearchFromJson(String a) =>
     RestaurantSearch.fromJson(json.decode(a));

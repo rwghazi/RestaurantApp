@@ -1,6 +1,6 @@
 import 'package:restaurant_app/provider/detail_provider.dart';
 import 'package:restaurant_app/widget/detail.dart';
-import 'package:restaurant_app/data/model/list_model.dart';
+import 'package:restaurant_app/data/model/detail_model.dart';
 import 'package:restaurant_app/data/api/api_service.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
@@ -32,10 +32,11 @@ class DetailPage extends StatelessWidget {
                   ),
                 );
               } else if (state.state == ResultState.HasData) {
-                var restaurant = state.result.restaurant;
+                var restaurantDetailed = state.result.restaurant;
                 return DetailRestaurant(
                   restaurant: restaurant,
-                  provider: _provider,
+                  restaurantDetailed: restaurantDetailed,
+                  detailProvider: _provider,
                 );
               } else if (state.state == ResultState.NoData) {
                 return Center(child: Text(state.message));

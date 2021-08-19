@@ -1,6 +1,42 @@
 import 'dart:convert';
 
+
 import 'package:restaurant_app/data/model/review_model.dart';
+
+RestaurantList restaurantListFromJson(String str) =>
+    RestaurantList.fromJson(json.decode(str));
+
+String restaurantListToJson(RestaurantList data) => json.encode(data.toJson());
+
+class RestaurantList {
+  RestaurantList({
+    required this.error,
+    required this.message,
+    required this.count,
+    required this.restaurants,
+  });
+
+  bool error;
+  String message;
+  int count;
+  List<Restaurant> restaurants;
+
+  factory RestaurantList.fromJson(Map<String, dynamic> json) => RestaurantList(
+        error: json["error"],
+        message: json["message"],
+        count: json["count"],
+        restaurants: List<Restaurant>.from(
+            json["restaurants"].map((x) => Restaurant.fromJson(x))),
+      );
+
+  Map<String, dynamic> toJson() => {
+        "error": error,
+        "message": message,
+        "count": count,
+        "restaurants": List<dynamic>.from(restaurants.map((x) => x.toJson())),
+      };
+}
+
 
 RestaurantDetail restaurantDetailFromJson(String str) =>
     RestaurantDetail.fromJson(json.decode(str));
@@ -17,13 +53,13 @@ class RestaurantDetail {
 
   bool error;
   String message;
-  Restaurant restaurant;
+  RestaurantDetailed restaurant;
 
   factory RestaurantDetail.fromJson(Map<String, dynamic> json) =>
       RestaurantDetail(
         error: json["error"],
         message: json["message"],
-        restaurant: Restaurant.fromJson(json["restaurant"]),
+        restaurant: RestaurantDetailed.fromJson(json["restaurant"]),
       );
 
   Map<String, dynamic> toJson() => {
@@ -35,6 +71,44 @@ class RestaurantDetail {
 
 class Restaurant {
   Restaurant({
+    required this.id,
+    required this.name,
+    required this.description,
+    required this.pictureId,
+    required this.city,
+    required this.rating,
+  });
+
+  String id;
+  String name;
+  String description;
+  String pictureId;
+  String city;
+  double rating;
+
+  factory Restaurant.fromJson(Map<String, dynamic> json) => Restaurant(
+        id: json["id"],
+        name: json["name"],
+        description: json["description"],
+        pictureId: json["pictureId"],
+        city: json["city"],
+        rating: json["rating"].toDouble(),
+      );
+
+  Map<String, dynamic> toJson() => {
+        "id": id,
+        "name": name,
+        "description": description,
+        "pictureId": pictureId,
+        "city": city,
+        "rating": rating,
+      };
+}
+
+
+
+class RestaurantDetailed {
+  RestaurantDetailed({
     required this.id,
     required this.name,
     required this.description,
@@ -58,7 +132,7 @@ class Restaurant {
   double rating;
   List<CustomerReview> customerReviews;
 
-  factory Restaurant.fromJson(Map<String, dynamic> json) => Restaurant(
+  factory RestaurantDetailed.fromJson(Map<String, dynamic> json) => RestaurantDetailed(
         id: json["id"],
         name: json["name"],
         description: json["description"],

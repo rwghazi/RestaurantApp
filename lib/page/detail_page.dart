@@ -1,4 +1,5 @@
 import 'package:restaurant_app/provider/detail_provider.dart';
+import 'package:restaurant_app/utils/enum.dart';
 import 'package:restaurant_app/widget/detail.dart';
 import 'package:restaurant_app/data/model/restaurant_model.dart';
 import 'package:restaurant_app/data/api/api_service.dart';

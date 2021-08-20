@@ -5,9 +5,7 @@ import 'package:restaurant_app/provider/db_provider.dart';
 import 'package:restaurant_app/utils/enum.dart';
 import 'package:restaurant_app/widget/list.dart';
 
-
 class FavoritePage extends StatelessWidget {
-
   static const String favoritesTitle = 'Favorites';
 
   final DatabaseProvider dbProvider;
@@ -24,11 +22,11 @@ class FavoritePage extends StatelessWidget {
             style:
                 GoogleFonts.poppins(fontSize: 20, fontWeight: FontWeight.w900),
           )),
-          body: _buildList(),
+      body: _buildList(),
     );
   }
 
-    Widget _buildList() {
+  Widget _buildList() {
     return Consumer<DatabaseProvider>(
       builder: (context, dbProvider, child) {
         if (dbProvider.state == ResultState.HasData) {
@@ -47,4 +45,3 @@ class FavoritePage extends StatelessWidget {
     );
   }
 }
- 

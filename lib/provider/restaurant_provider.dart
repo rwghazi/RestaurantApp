@@ -26,11 +26,11 @@ class RestaurantProvider extends ChangeNotifier {
     try {
       _state = ResultState.Loading;
       notifyListeners();
-      final restaurantList = await apiService.getRestaurantList();
+      final result = await apiService.getRestaurantList();
       notifyListeners();
       _state = ResultState.HasData;
       notifyListeners();
-      return _restaurantResult = restaurantList;
+      return _restaurantResult = result;
     } catch (e) {
       _state = ResultState.Error;
       notifyListeners();
@@ -42,15 +42,15 @@ class RestaurantProvider extends ChangeNotifier {
     try {
       _state = ResultState.Loading;
       notifyListeners();
-      final restaurantSearch = await apiService.getRestaurantSearch(query);
-      if (restaurantSearch.restaurants.isEmpty) {
+      final result = await apiService.getRestaurantSearch(query);
+      if (result.restaurants.isEmpty) {
         _state = ResultState.NoData;
         notifyListeners();
         return _message = 'Tidak ditemukan';
       } else {
         _state = ResultState.HasData;
         notifyListeners();
-        return _restaurantResult = restaurantSearch;
+        return _restaurantResult = result;
       }
     } catch (e) {
       _state = ResultState.Error;

@@ -1,6 +1,5 @@
 import 'dart:convert';
 
-
 import 'package:restaurant_app/data/model/review_model.dart';
 
 RestaurantList restaurantListFromJson(String str) =>
@@ -36,7 +35,6 @@ class RestaurantList {
         "restaurants": List<dynamic>.from(restaurants.map((x) => x.toJson())),
       };
 }
-
 
 RestaurantDetail restaurantDetailFromJson(String str) =>
     RestaurantDetail.fromJson(json.decode(str));
@@ -105,8 +103,6 @@ class Restaurant {
       };
 }
 
-
-
 class RestaurantDetailed {
   RestaurantDetailed({
     required this.id,
@@ -132,7 +128,8 @@ class RestaurantDetailed {
   double rating;
   List<CustomerReview> customerReviews;
 
-  factory RestaurantDetailed.fromJson(Map<String, dynamic> json) => RestaurantDetailed(
+  factory RestaurantDetailed.fromJson(Map<String, dynamic> json) =>
+      RestaurantDetailed(
         id: json["id"],
         name: json["name"],
         description: json["description"],
@@ -146,7 +143,6 @@ class RestaurantDetailed {
         customerReviews: List<CustomerReview>.from(
             json["customerReviews"].map((x) => CustomerReview.fromJson(x))),
       );
-
 
   Map<String, dynamic> toJson() => {
         "id": id,

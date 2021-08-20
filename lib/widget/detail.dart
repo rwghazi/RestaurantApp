@@ -140,23 +140,24 @@ class DetailRestaurant extends StatelessWidget {
                                   restaurant.city,
                                   style: Theme.of(context).textTheme.subtitle1,
                                 ),
-                                 isFavorited
-                                ? IconButton(
-                                    icon: Icon(
-                                      Icons.favorite,
-                                      color: Colors.red,
-                                    ),
-                                    onPressed: () => provider
-                                        .removeFavorites(restaurantDetailed.id),
-                                  )
-                                : IconButton(
-                                    icon: Icon(
-                                      Icons.favorite_border,
-                                      color: Colors.red,
-                                    ),
-                                    onPressed: () =>
-                                        provider.addFavorite(restaurant),
-                                  ),
+                                isFavorited
+                                    ? IconButton(
+                                        icon: Icon(
+                                          Icons.favorite,
+                                          color: Colors.red,
+                                        ),
+                                        onPressed: () =>
+                                            provider.removeFavorites(
+                                                restaurantDetailed.id),
+                                      )
+                                    : IconButton(
+                                        icon: Icon(
+                                          Icons.favorite_border,
+                                          color: Colors.red,
+                                        ),
+                                        onPressed: () =>
+                                            provider.addFavorite(restaurant),
+                                      ),
                               ]),
                           // Bagian Deskripsi
                           SizedBox(

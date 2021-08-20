@@ -3,8 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:restaurant_app/data/api/api_service.dart';
 import 'package:restaurant_app/data/model/review_model.dart';
-
-enum ResultState { Loading, NoData, HasData, Error }
+import 'package:restaurant_app/utils/enum.dart';
 
 class DetailProvider extends ChangeNotifier {
   final ApiService apiService;
@@ -16,6 +15,7 @@ class DetailProvider extends ChangeNotifier {
 
   late dynamic _restaurantResult;
   late ResultState _state;
+
   String _message = '';
 
   String get message => _message;

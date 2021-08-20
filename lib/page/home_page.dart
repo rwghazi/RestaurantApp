@@ -6,20 +6,26 @@ import 'setting_page.dart';
 import 'favorite_page.dart';
 import 'list_page.dart';
 
+
 class HomePage extends StatefulWidget {
   static const routeName = '/home_page';
   final int bottomNavBarIndex;
 
   const HomePage({this.bottomNavBarIndex = 0});
+  
+ 
+
   @override
   _HomePageState createState() => _HomePageState();
+  
 }
 
 class _HomePageState extends State<HomePage> {
   late int bottomNavBarIndex;
   final controller = ScrollController();
   late PageController pageController;
-    static DatabaseProvider databaseProvider = DatabaseProvider(databaseHelper: DatabaseHelper());
+  static DatabaseProvider databaseProvider =
+      DatabaseProvider(databaseHelper: DatabaseHelper());
 
   @override
   void initState() {
@@ -37,7 +43,10 @@ class _HomePageState extends State<HomePage> {
               color: Colors.white,
               borderRadius: BorderRadius.only(
                   topLeft: Radius.circular(20), topRight: Radius.circular(20)),
-                  boxShadow: [BoxShadow(color: Colors.black38, spreadRadius: 0, blurRadius: 10)]),
+              boxShadow: [
+                BoxShadow(
+                    color: Colors.black38, spreadRadius: 0, blurRadius: 10)
+              ]),
           child: BottomNavigationBar(
               elevation: 0,
               backgroundColor: Colors.transparent,
@@ -52,14 +61,14 @@ class _HomePageState extends State<HomePage> {
               },
               items: [
                 BottomNavigationBarItem(
-                    label: "Beranda",
+                    label: "Home",
                     icon: Container(
                       margin: EdgeInsets.only(bottom: 5),
                       height: 20,
                       child: Icon(Icons.home),
                     )),
                 BottomNavigationBarItem(
-                    label: "Favorit",
+                    label: "Favorite",
                     icon: Container(
                       margin: EdgeInsets.only(bottom: 5),
                       height: 20,
@@ -72,8 +81,7 @@ class _HomePageState extends State<HomePage> {
                       height: 20,
                       child: Icon(Icons.settings),
                     )),
-              ]
-              ),
+              ]),
         ),
       );
 
@@ -92,7 +100,9 @@ class _HomePageState extends State<HomePage> {
             },
             children: [
               ListPage(),
-              FavoritePage(dbProvider: databaseProvider,),
+              FavoritePage(
+                dbProvider: databaseProvider,
+              ),
               SettingPage(),
             ],
           ),
@@ -100,5 +110,7 @@ class _HomePageState extends State<HomePage> {
         ],
       ),
     );
-  } 
+  }
 }
+ 
+ 

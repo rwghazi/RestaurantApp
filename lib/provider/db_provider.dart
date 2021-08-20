@@ -25,7 +25,7 @@ class DatabaseProvider extends ChangeNotifier {
       _state = ResultState.HasData;
     } else {
       _state = ResultState.NoData;
-      _message = 'Empty Data';
+      _message = 'Tap ikon hati untuk simpan restoran favoritmu!';
     }
     notifyListeners();
   }

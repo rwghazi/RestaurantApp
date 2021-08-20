@@ -44,7 +44,7 @@ class NotificationHelper {
  
   Future<void> showNotification(
      FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin,
-     RestaurantList restaurantList) async {
+     RestaurantList restaurants) async {
     var _channelId = "1";
     var _channelName = "channel_01";
     var _channelDescription = "Restaurant Channel"; 
@@ -60,16 +60,16 @@ class NotificationHelper {
     var platformChannelSpecifics = NotificationDetails(
         android: androidPlatformChannelSpecifics, iOS: iOSPlatformChannelSpecifics);
 
-    // Generate and initialize random number for the index of restaurant
     Random random = new Random();
-    index = random.nextInt(restaurantList.restaurants.length);
+    int randomNum = random.nextInt(restaurants.restaurants.length-1);
+    var restaurant = restaurants.restaurants[randomNum];
  
     var titleNotification = "<b>Siang ini makan dimana ya?</b>";
-    var titleName = restaurantList.restaurants[index].name;
+    var titleName = "Rekomedasi restoran: " + "${restaurant.name}";
  
     await flutterLocalNotificationsPlugin.show(
         0, titleNotification, titleName, platformChannelSpecifics,
-        payload: json.encode(restaurantList.toJson()));
+        payload: json.encode(restaurants.toJson()));
   }
  
   void configureSelectNotificationSubject(String route) {

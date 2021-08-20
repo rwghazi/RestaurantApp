@@ -20,7 +20,7 @@ class FavoritePage extends StatelessWidget {
       appBar: AppBar(
           centerTitle: true,
           title: Text(
-            'Favorit',
+            'Favorite',
             style:
                 GoogleFonts.poppins(fontSize: 20, fontWeight: FontWeight.w900),
           )),
